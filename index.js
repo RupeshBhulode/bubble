@@ -1,9 +1,9 @@
 const { GoogleGenAI } = require("@google/genai");
 const http = require("node:http");
 
-const GEMINI_API_KEY = "AQ.Ab8RN6JNh3cFoIWXAbBp0QiJ7Jb-wv8KhLKl766GVGSdQ-ELgw";
-const GEMINI_MODEL = "gemini-3.6-flash";
-const ACCESS_KEY = "12345";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+const ACCESS_KEY = process.env.ACCESS_KEY;
 
 async function generateResponse(instruction, userRequest) {
 	if (typeof instruction !== "string" || !instruction.trim()) {
@@ -14,8 +14,8 @@ async function generateResponse(instruction, userRequest) {
 		throw new Error("A non-empty request is required.");
 	}
 
-	if (GEMINI_API_KEY === "PASTE_YOUR_ROTATED_GEMINI_KEY_HERE") {
-		throw new Error("Paste your rotated Gemini key into index.js first.");
+	if (!GEMINI_API_KEY) {
+		throw new Error("GEMINI_API_KEY is not configured.");
 	}
 
 	const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
@@ -35,6 +35,10 @@ async function generateResponse(instruction, userRequest) {
 }
 
 function startServer() {
+	if (!ACCESS_KEY) {
+		throw new Error("ACCESS_KEY is not configured.");
+	}
+
 	const port = Number(process.env.PORT) || 3000;
 	const server = http.createServer(async (request, response) => {
 		response.setHeader("Access-Control-Allow-Origin", "*");
