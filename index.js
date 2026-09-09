@@ -1,7 +1,7 @@
 const { GoogleGenAI } = require("@google/genai");
 const http = require("node:http");
 
-const GEMINI_API_KEY = "PASTE_YOUR_ROTATED_GEMINI_KEY_HERE";
+const GEMINI_API_KEY = AQ.Ab8RN6LJ66nMimz6t-xOw5p-O8j7uKocsp-Xh6dLPa4RiULRWA;
 const GEMINI_MODEL = "gemini-3.6-flash";
 const ACCESS_KEY = "12345";
 
