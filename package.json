@@ -1,0 +1,14 @@
+{
+  "name": "card-case-classifier-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Gemini-powered card case request classifier.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "classify": "node index.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.21.0"
+  }
+}
